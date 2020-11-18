@@ -11,7 +11,7 @@ import { HomeModule } from './home/home.module';
     AppComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule.withServerTransition({ appId: 'serverApp' }).withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     HttpClientModule,
     HomeModule

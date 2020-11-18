@@ -6,7 +6,7 @@ export interface Launch {
   launch_date_local: string;
   launch_date_unix: number;
   launch_date_utc: string;
-  launch_failure_details: { time: 33, altitude: null, reason: string; }
+  launch_failure_details: { time: 33, altitude: null, reason: string; };
   launch_site: {
     site_id: string;
     site_name: string;
