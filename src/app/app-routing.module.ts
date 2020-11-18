@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
