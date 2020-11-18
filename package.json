@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -14,6 +14,10 @@
     "prerender": "ng run space-x:prerender",
     "start:heroku": "node dist/space-x/server/main.js",
     "postinstall": "npm run build"
+  },
+  "engines": {
+    "node": "12.15.0",
+    "npm": "6.13.4"
   },
   "private": true,
   "dependencies": {
