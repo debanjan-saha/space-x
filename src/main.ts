@@ -8,9 +8,12 @@ if (environment.production) {
   enableProdMode();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.addEventListener('DOMContentLoaded', () => {
-    platformBrowserDynamic().bootstrapModule(AppModule)
+platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
-  });
-});
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   document.addEventListener('DOMContentLoaded', () => {
+//     platformBrowserDynamic().bootstrapModule(AppModule)
+//   .catch(err => console.error(err));
+//   });
+// });
