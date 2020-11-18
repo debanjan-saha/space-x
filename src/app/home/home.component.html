@@ -38,12 +38,20 @@
     </div>
     <div class="data-panel">
       <div class="launch-details spacex-card" *ngFor="let data of data">
-        <img [src]="data.links.mission_patch">
+        <ng-container [ngTemplateOutlet]="launchCard" [ngTemplateOutletContext]="{ data: data }"></ng-container>
+      </div>
+    </div>
+  </div>
+  <h2 class="footer">Developed by: Debanjan Saha</h2>
+</div>
+
+<ng-template #launchCard let-data="data">
+  <img [src]="data.links.mission_patch">
         <div class="text-details">
           <div class="launch-title">{{ data.mission_name + '#' + data.flight_number }}</div>
           <div class="launch-label-wrapper">
-            <label>Mission Ids:</label>
-            <ul>
+            <strong *ngIf="data.mission_id.length > 0">Mission Ids:</strong>
+            <ul *ngIf="data.mission_id.length > 0">
               <li *ngFor="let id of data.mission_id">{{ id }}</li>
             </ul>
           </div>
@@ -60,8 +68,4 @@
             <span class="value">{{ isSuccessfulLanding }}</span>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <h2 class="footer">Developed by: Debanjan Saha</h2>
-</div>
+</ng-template>
