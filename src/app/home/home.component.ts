@@ -34,7 +34,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private parseBooleanString(str: string) {
-    console.log(typeof str);
     if (str === 'undefined' || str === undefined) {
       return undefined;
     } else if (str === 'true') {
