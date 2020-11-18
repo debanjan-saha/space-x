@@ -1,0 +1,123 @@
+.home-container-wrapper {
+  padding: 16px;
+  display: block;
+  h2.footer {
+    text-align: center;
+  }
+}
+.home-container {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  .filters-panel {
+    display: inline-block;
+    .spacex-button {
+      margin: 5px;
+      &.active {
+        background-color: #d2e603;
+      }
+    }
+  }
+  .data-panel {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    .launch-details {
+      display: inline-block;
+      img {
+        width: 100%;
+        background-color: #f5f5f5;
+      }
+      .launch-title {
+        font-weight: bold;
+        color: #120078;
+      }
+      .launch-label-wrapper {
+        margin-top: 5px;
+        .value {
+          margin-left: 5px;
+          color: #120078;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .home-container .filters-panel {
+    width: calc(100% - 72px);
+    .spacex-button {
+      width: 47%;
+    }
+  }
+  .data-panel {
+    .launch-details {
+      width: 100%;
+      img {
+        height: calc(100% - 250px);
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 701px) and (max-width: 1024px) {
+  .home-container .filters-panel {
+    width: calc(50% - 85px);
+    .spacex-button {
+      width: 45%;
+    }
+  }
+  .data-panel {
+    width: calc(50% - 100px);
+    .launch-details {
+      width: 100%;
+      img {
+        height: calc(100% - 200px);
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+  .home-container .filters-panel {
+    width: 12%;
+    .spacex-button {
+      width: 43%;
+    }
+  }
+
+  .data-panel {
+    width: calc(84% - 16px);
+    .launch-details {
+      width: 19%;
+      img {
+        height: calc(100% - 200px);
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1441px) {
+  .home-container-wrapper {
+    text-align: center;
+  }
+  .home-container {
+    justify-content: center;
+  }
+  .home-container .filters-panel {
+    width: 200px;
+    .spacex-button {
+      width: 43%;
+    }
+  }
+
+  .data-panel {
+    width: 1240px;
+    .launch-details {
+      width: calc(20% - 25px);
+      img {
+        height: calc(100% - 200px);
+      }
+    }
+  }
+}
