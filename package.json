@@ -10,7 +10,7 @@
     "e2e": "ng e2e",
     "dev:ssr": "ng run space-x:serve-ssr",
     "serve:ssr": "node dist/space-x/server/main.js",
-    "build:ssr": "npm run lint && ng build --prod && ng run space-x:server:production",
+    "build:ssr": "npm run lint && ng build --prod --aot && ng run space-x:server:production",
     "prerender": "ng run space-x:prerender",
     "start:heroku": "node dist/space-x/server/main.js",
     "postinstall": "npm run build:ssr"
