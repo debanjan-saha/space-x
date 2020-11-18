@@ -7,7 +7,6 @@
       <div class="filter-group">
         <div class="filter-header">
           <div>Launch Year</div>
-          <!-- <div class="link" (click)="clearFilter('year')">Clear</div> -->
         </div>
         <hr>
         <button class="spacex-button" *ngFor="let year of years" [ngClass]="{'active': selectedYear === year }"
@@ -16,7 +15,6 @@
       <div class="filter-group">
         <div class="filter-header">
           <div>Successful Launch</div>
-          <!-- <div class="link" (click)="clearFilter('launch')">Clear</div> -->
         </div>
         <hr>
         <button class="spacex-button" [ngClass]="{'active': isSuccessfulLaunch === true }"
@@ -27,7 +25,6 @@
       <div class="filter-group">
         <div class="filter-header">
           <div>Successful Landing</div>
-          <!-- <div class="link" (click)="clearFilter('landing')">Clear</div> -->
         </div>
         <hr>
         <button class="spacex-button" [ngClass]="{'active': isSuccessfulLanding === true }"
@@ -46,7 +43,7 @@
 </div>
 
 <ng-template #launchCard let-data="data">
-  <img [src]="data.links.mission_patch_small" [alt]="data.mission_name">
+  <img [src]="data.links.mission_patch_small" [alt]="data.mission_name" loading="lazy">
   <div class="text-details">
     <div class="launch-title">{{ data.mission_name + '#' + data.flight_number }}</div>
     <div class="launch-label-wrapper">
