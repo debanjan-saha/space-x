@@ -33,4 +33,5 @@ Once my app was building successfully locally, I created a new app on heroku, de
 
 # Lighthouse Metrics
 
-![image](https://user-images.githubusercontent.com/66873556/99577761-ceee7500-2a01-11eb-9d41-681e4a160520.png)
+![image](https://user-images.githubusercontent.com/66873556/99579766-9f8d3780-2a04-11eb-9379-3d3b1f4ebacf.png)
+
