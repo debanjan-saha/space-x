@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "npm run start:heroku",
-    "build": "ng build --prod --aot",
+    "build": "npm run build:ssr",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -12,8 +12,7 @@
     "serve:ssr": "node dist/space-x/server/main.js",
     "build:ssr": "npm run lint && ng build --prod --aot && ng run space-x:server:production",
     "prerender": "ng run space-x:prerender",
-    "start:heroku": "node dist/space-x/server/main.js",
-    "postinstall": "npm run build:ssr"
+    "start:heroku": "node dist/space-x/server/main.js"
   },
   "engines": {
     "node": "12.15.0",
