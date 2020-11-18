@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 import { Launch } from '../launch.model';
 import { SpaceXService } from '../spacex-api.service';
 
@@ -23,7 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(private spaceXService: SpaceXService, private route: ActivatedRoute, private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.years = [2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020];
     this.paramsSubscription = this.route.params.subscribe(params => {
       this.selectedYear = params.year !== 'undefined' && params.year !== 'NaN' ? +params.year : undefined;
@@ -33,8 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  private parseBooleanString(str: string) {
-    console.log(typeof str);
+  private parseBooleanString(str: string): boolean {
     if (str === 'undefined' || str === undefined) {
       return undefined;
     } else if (str === 'true') {
@@ -44,12 +42,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.paramsSubscription.unsubscribe();
     this.dataSubscription.unsubscribe();
   }
 
-  toggleFilter(filterName: string, value: any) {
+  toggleFilter(filterName: string, value: any): void {
     switch (filterName) {
       case 'year': {
         if (value === this.selectedYear) {
@@ -79,16 +77,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.navigate();
   }
 
-  clearFilter(filterName: string) {
-    switch (filterName) {
-      case 'year': this.selectedYear = undefined; break;
-      case 'launch': this.isSuccessfulLaunch = undefined; break;
-      case 'landing': this.isSuccessfulLanding = undefined; break;
-    }
-    this.navigate();
-  }
-
-  loadLaunches(year: number, launchSuccess: boolean, landSuccess: boolean) {
+  loadLaunches(year: number, launchSuccess: boolean, landSuccess: boolean): void {
     this.isLoading = true;
     this.dataSubscription = this.spaceXService.getLaunches(year, launchSuccess, landSuccess).subscribe(response => {
       this.data = response;
@@ -96,7 +85,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }, _ => this.isLoading = false);
   }
 
-  navigate() {
+  navigate(): void {
     this.router.navigate(['/', `${this.selectedYear}`, `${this.isSuccessfulLaunch}`, `${this.isSuccessfulLanding}`]);
   }
 
