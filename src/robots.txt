@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://space-x-2020.herokuapp.com/sitemap.xml
