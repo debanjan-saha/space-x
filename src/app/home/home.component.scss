@@ -11,6 +11,23 @@
   flex-wrap: wrap;
   .filters-panel {
     display: inline-block;
+    .filter-group {
+      margin-bottom: 30px;
+      .filter-header {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 12px;
+        font-size: 14px;
+        div.link {
+          color: blue;
+          cursor: pointer;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
     .spacex-button {
       margin: 5px;
       &.active {
@@ -25,7 +42,8 @@
     .launch-details {
       display: inline-block;
       img {
-        width: 100%;
+        width: calc(100% - 40px);
+        padding: 20px;
         background-color: #f5f5f5;
       }
       .launch-title {
@@ -98,7 +116,7 @@
 }
 
 @media only screen and (min-width: 1441px) {
-  .home-container-wrapper {
+  .home-container-wrapper > h1 {
     text-align: center;
   }
   .home-container {

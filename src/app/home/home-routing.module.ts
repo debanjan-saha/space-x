@@ -5,8 +5,8 @@ import { HomeComponent } from './home.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: ':year/:successfulLaunch/:successfulLanding', component: HomeComponent },
-  { path: ':successfulLaunch/:successfulLanding', component: HomeComponent }];
+  { path: ':year/:successfulLaunch/:successfulLanding', component: HomeComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

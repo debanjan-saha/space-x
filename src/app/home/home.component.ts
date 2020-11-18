@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { Launch } from '../launch.model';
 import { SpaceXService } from '../spacex-api.service';
 
@@ -23,9 +24,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private spaceXService: SpaceXService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.years = [ 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020];
+    this.years = [2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020];
     this.paramsSubscription = this.route.params.subscribe(params => {
-      this.selectedYear = params.year !== 'undefined' ? +params.year : undefined;
+      this.selectedYear = params.year !== 'undefined' && params.year !== 'NaN' ? +params.year : undefined;
       this.isSuccessfulLaunch = this.parseBooleanString(params.successfulLaunch);
       this.isSuccessfulLanding = this.parseBooleanString(params.successfulLanding);
       this.loadLaunches(this.selectedYear, this.isSuccessfulLaunch, this.isSuccessfulLanding);
@@ -33,11 +34,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private parseBooleanString(str: string) {
-    if (str === 'undefined' || str === 'false') {
-      return false;
+    console.log(typeof str);
+    if (str === 'undefined' || str === undefined) {
+      return undefined;
     } else if (str === 'true') {
       return true;
-    } else {
+    } else if (str === 'false') {
       return false;
     }
   }
@@ -45,6 +47,45 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.paramsSubscription.unsubscribe();
     this.dataSubscription.unsubscribe();
+  }
+
+  toggleFilter(filterName: string, value: any) {
+    switch (filterName) {
+      case 'year': {
+        if (value === this.selectedYear) {
+          this.selectedYear = undefined;
+        } else {
+          this.selectedYear = value;
+        }
+        break;
+      }
+      case 'launch': {
+        if (value === this.isSuccessfulLaunch) {
+          this.isSuccessfulLaunch = undefined;
+        } else {
+          this.isSuccessfulLaunch = value;
+        }
+        break;
+      }
+      case 'landing': {
+        if (value === this.isSuccessfulLanding) {
+          this.isSuccessfulLanding = undefined;
+        } else {
+          this.isSuccessfulLanding = value;
+        }
+        break;
+      }
+    }
+    this.navigate();
+  }
+
+  clearFilter(filterName: string) {
+    switch (filterName) {
+      case 'year': this.selectedYear = undefined; break;
+      case 'launch': this.isSuccessfulLaunch = undefined; break;
+      case 'landing': this.isSuccessfulLanding = undefined; break;
+    }
+    this.navigate();
   }
 
   loadLaunches(year: number, launchSuccess: boolean, landSuccess: boolean) {
@@ -55,14 +96,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     }, _ => this.isLoading = false);
   }
 
-  navigate(year: number) {
-    if (year === this.selectedYear) {
-      this.selectedYear = undefined;
-      this.router.navigateByUrl(`/${this.isSuccessfulLaunch}/${this.isSuccessfulLaunch}`);
-    } else {
-      this.selectedYear = year;
-      this.router.navigateByUrl(`/${this.selectedYear}/${this.isSuccessfulLaunch}/${this.isSuccessfulLaunch}`);
-    }
+  navigate() {
+    this.router.navigate(['/', `${this.selectedYear}`, `${this.isSuccessfulLaunch}`, `${this.isSuccessfulLanding}`]);
   }
 
 }

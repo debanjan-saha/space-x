@@ -5,23 +5,35 @@
     <div class="filters-panel spacex-card">
       <h3>Filters</h3>
       <div class="filter-group">
-        <h5>Launch Year</h5>
+        <div class="filter-header">
+          <div>Launch Year</div>
+          <!-- <div class="link" (click)="clearFilter('year')">Clear</div> -->
+        </div>
+        <hr>
         <button class="spacex-button" *ngFor="let year of years" [ngClass]="{'active': selectedYear === year }"
-          (click)="navigate(year)">{{ year }}</button>
+          (click)="toggleFilter('year', year)">{{ year }}</button>
       </div>
       <div class="filter-group">
-        <h5>Successful Launch</h5>
-        <button class="spacex-button" [ngClass]="{'active': isSuccessfulLaunch }"
-          [routerLink]="['/', selectedYear, true, isSuccessfulLanding]">True</button>
-        <button class="spacex-button" [ngClass]="{'active': !isSuccessfulLaunch }"
-          [routerLink]="['/', selectedYear, false, isSuccessfulLanding]">False</button>
+        <div class="filter-header">
+          <div>Successful Launch</div>
+          <!-- <div class="link" (click)="clearFilter('launch')">Clear</div> -->
+        </div>
+        <hr>
+        <button class="spacex-button" [ngClass]="{'active': isSuccessfulLaunch === true }"
+          (click)="toggleFilter('launch', true)">True</button>
+        <button class="spacex-button" [ngClass]="{'active': isSuccessfulLaunch === false }"
+          (click)="toggleFilter('launch', false)">False</button>
       </div>
       <div class="filter-group">
-        <h5>Successful Landing</h5>
-        <button class="spacex-button" [ngClass]="{'active': isSuccessfulLanding }"
-          [routerLink]="['/', selectedYear, isSuccessfulLaunch, true]">True</button>
-        <button class="spacex-button" [ngClass]="{'active': !isSuccessfulLanding }"
-          [routerLink]="['/', selectedYear, isSuccessfulLaunch, false]">False</button>
+        <div class="filter-header">
+          <div>Successful Landing</div>
+          <!-- <div class="link" (click)="clearFilter('landing')">Clear</div> -->
+        </div>
+        <hr>
+        <button class="spacex-button" [ngClass]="{'active': isSuccessfulLanding === true }"
+          (click)="toggleFilter('landing', true)">True</button>
+        <button class="spacex-button" [ngClass]="{'active': isSuccessfulLanding === false }"
+          (click)="toggleFilter('landing', false)">False</button>
       </div>
     </div>
     <div class="data-panel">

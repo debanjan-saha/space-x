@@ -23,7 +23,13 @@ export class SpaceXService {
     if (year) {
       url = `${url}&launch_year=${year}`;
     }
-    url = `${url}&launch_success=${launchSuccess}&land_success=${landSuccess}`;
+    if (launchSuccess !== undefined) {
+      url = `${url}&launch_success=${launchSuccess}`;
+    }
+
+    if (landSuccess !== undefined) {
+      url = `${url}&land_success=${landSuccess}`;
+    }
     return url;
   }
 }
